@@ -6,20 +6,23 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Search, CircleUser, ShoppingCart, ChevronDown } from "lucide-react" 
 import CountrySelector from '@/Data/countries'
+import SearchBar from '@/Components/Navbar/Navbarfiles/SearchBar'
+import { button } from 'motion/react-client';
 
 const LOGO_URL = "/Nook-logo.svg";
 
 
 const NavbarOne = () => {
   const [focused, setFocused] = useState(false);
+  const [open, setOpen] = useState(false)
   const [cartCount] = useState(0);
   return (
     <>
     <div>
         <header className="sticky top-0 z-40 bg-white">
-      <div className="mx-auto flex h-20 max-w-[1800px] items-center justify-between gap-6 px-6 md:px-20">
+      <div className={`mx-auto flex h-20 max-w-[1800px] items-center justify-${open ? 'center' : 'between'} gap-6 px-6 md:px-20`}>
         {/* Logo */}
-        <Link href="/" className="shrink-0">
+       {!open && <Link href="/" className="shrink-0">
           {LOGO_URL ? (
             <img src={LOGO_URL} alt="Nook" className="h-9 w-auto" />
           ) : (
@@ -28,9 +31,12 @@ const NavbarOne = () => {
             </span>
           )}
         </Link>
+}
 
         {/* Search bar (desktop) */}
         <motion.div
+
+        onClick={()=>setOpen(true)}
           className="hidden w-full max-w-170 items-center gap-4 rounded-full border bg-white px-7 py-3 md:flex"
           animate={{
             borderColor: focused ? "#262626" : "#d4d4d4",
@@ -48,13 +54,18 @@ const NavbarOne = () => {
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
           />
+          
         </motion.div>
+        {open && <button onClick={()=>setOpen(false)} className='text-3xl'>X</button>}
+        
 
         {/* Right side */}
+        {!open &&
         <div className="flex shrink-0 items-center gap-5">
           {/* Mobile search icon */}
           <button className="md:hidden" aria-label="Search">
             <Search size={22} />
+            
           </button>
 
           {/* Currency */}
@@ -90,8 +101,11 @@ const NavbarOne = () => {
             )}
           </motion.button>
         </div>
+}
       </div>
     </header>
+    {open && 
+    <div><SearchBar/></div>}
 
     </div>
     </>
