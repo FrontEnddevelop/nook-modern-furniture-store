@@ -22,10 +22,10 @@ const sections = [
 export default function SearchBar() {
   return (
     <motion.div
-      initial={{ opacity: 0, y: -8 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -8 }}
-      transition={{ duration: 0.15 }}
+      initial={{ y: "-100%", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: "-100%", opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
       className="w-full bg-white px-80 py-12  text-neutral-900"
     >
       <h2 className="text-center font-sans mb-5 text-[21px]">Trending searches</h2>
@@ -34,7 +34,12 @@ export default function SearchBar() {
         {/* Left: popular products */}
         <div className="flex-1">
           <h3 className="mb-3 font-sans text-[17px] ">Popular products</h3>
-          <div className="grid grid-cols-2 w-190 gap-x-0 gap-y-5">
+          <motion.div
+          initial={{ y: "100%", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: "100%", opacity: 0 }}
+            transition={{ duration: 1.3, ease: "easeInOut" }}
+          className="grid grid-cols-2 w-190 gap-x-0 gap-y-5">
             {products.map((p) => (
               <a key={p.name} href="#" className="group flex items-center gap-5">
                 <div className="h-22.5 w-22.5 shrink-0 bg-neutral-100">
@@ -49,7 +54,7 @@ export default function SearchBar() {
                 </div>
               </a>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Right: link lists */}
