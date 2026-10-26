@@ -21,7 +21,7 @@ const list = countriesData
 export default function CountrySelector() {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(
-    list.find((c) => c.name === "Pakistan") || list[0]
+    list.find((c) => c.name === "United States") || list[0]
   );
 
   return (
