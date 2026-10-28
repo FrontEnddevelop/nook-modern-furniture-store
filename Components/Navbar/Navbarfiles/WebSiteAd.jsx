@@ -1,4 +1,4 @@
-import React from 'react'
+"use client";
 
 
 const Data =[
@@ -23,6 +23,7 @@ const Data =[
 const WebSiteAd = () => {
   return (
     <div className='flex justify-around px-15 pt-5 pb-3 bg-white'>
+        
         {Data.map((l)=>{
 
             return(
