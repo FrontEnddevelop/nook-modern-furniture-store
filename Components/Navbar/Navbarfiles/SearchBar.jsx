@@ -36,11 +36,11 @@ export default function SearchBar() {
         <div className="flex-1">
           <h3 className="mb-3 font-sans text-[17px] ">Popular products</h3>
           <motion.div
-          initial={{ y: 10, opacity: 0 }}
+          initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 10, opacity: 0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="grid grid-cols-2 w-190 gap-x-0 gap-y-5">
+            exit={{ y: 20, opacity: 0 }}
+            transition={{ duration: 0.7, ease: "easeInOut" }}
+          className="grid grid-cols-2 w-190 gap-x-0 gap-y-7">
             {products.map((p) => (
               <a key={p.name} href="#" className="group flex items-center gap-5">
                 <div className="h-22.5 w-22.5 shrink-0 bg-neutral-100">
@@ -59,14 +59,21 @@ export default function SearchBar() {
         </div>
 
         {/* Right: link lists */}
-        <div className="w-117.5 border-l px-10 border-neutral-200">
+        <div
+        
+        className="w-117.5 border-l px-10 border-neutral-200">
           {sections.map((s, i) => (
             <div
               key={s.title}
               className={i > 0 ? "mt-5 border-t border-neutral-200 pt-5" : " font-sans"}
             >
               <h3 className="mb-2 text-base">{s.title}</h3>
-              <ul className="space-y-1.5">
+              <motion.ul
+              initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 20, opacity: 0 }}
+            transition={{ duration: 0.7, ease: "easeInOut" }}              
+              className="space-y-1.5">
                 {s.links.map((l) => (
                   <li key={l}>
                     <a href="#" className="text-neutral-700 hover:underline">
@@ -74,7 +81,7 @@ export default function SearchBar() {
                     </a>
                   </li>
                 ))}
-              </ul>
+              </motion.ul>
             </div>
           ))}
         </div>

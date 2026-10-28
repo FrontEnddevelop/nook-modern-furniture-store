@@ -6,6 +6,7 @@ import NavbarTwo from './Navbarfiles/NavarbarTwo'
 const Navbar = () => {
   const [inView, setInView] = useState(true)
   const [open, setOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const ref = useRef(null)
 
   useEffect(() => {
@@ -38,7 +39,7 @@ const Navbar = () => {
   return (
     <>
       {/* NavbarOne: always fixed */}
-      <div className="fixed left-0 top-0 z-50 h-20 w-full bg-white">
+      <div className="fixed left-0 top-0 z-55 h-20 w-full bg-white">
         <NavbarOne
           showButton={!inView && !open}
           onButtonClick={() => setOpen(true)}
@@ -46,9 +47,22 @@ const Navbar = () => {
       </div>
 
       {/* NavbarTwo in normal flow (this is what we watch) */}
-      <div ref={ref} className="pt-20">
-        <NavbarTwo />
+      <div ref={ref} className="relative z-50 pt-20">
+        <NavbarTwo onMenuChange={setMenuOpen} />
+
       </div>
+      <AnimatePresence>
+  {menuOpen && (
+    <motion.div
+      key="backdrop"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className="pointer-events-none fixed inset-0 z-40 bg-gray-200/50 backdrop-blur-sm"
+    />
+  )}
+</AnimatePresence>
 
       {/* NavbarTwo again, slides in under NavbarOne when button is clicked */}
       <AnimatePresence>

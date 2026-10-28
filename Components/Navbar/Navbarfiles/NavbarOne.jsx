@@ -118,9 +118,9 @@ const NavbarOne = ({showButton,onButtonClick}) => {
         </div>
 }
       </div>
-   
+
     {searchOpen && 
-    <div><SearchBar/></div>}
+    <div><SearchBar/></div> }
     {sign && <div className="w-full absolute top-5 right-7 z-40 max-w-95 rounded-3xl bg-white p-6 shadow-2xl">
   {/* Header */}
   <div className="flex items-center justify-between">

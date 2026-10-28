@@ -1,12 +1,12 @@
 "use client";
 
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ChevronDown } from "lucide-react";
 import LivingRoom from './LivingRoom';
 import DinningRoomMenu from './DinningRoom';
 import WebSiteAd from './WebSiteAd'
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 
 
@@ -26,7 +26,7 @@ const links = [
 
 
 
-const NavarbarTwo = () => {
+const NavarbarTwo = ({onMenuChange }) => {
 
 
   const [activeMenu, setActiveMenu] = useState(null);
@@ -78,6 +78,10 @@ const NavarbarTwo = () => {
 
 
 }
+useEffect(() => {
+  onMenuChange?.(!!activeMenu)
+  return () => onMenuChange?.(false)
+}, [activeMenu])
 
 
   return (
@@ -100,16 +104,27 @@ const NavarbarTwo = () => {
 
     </nav>
 
-    <motion.div
+<AnimatePresence>
+      {activeMenu && (
+        <motion.div
+          key="backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onMouseEnter={() => setActiveMenu(null)}
+          className="fixed inset-0 -z-10 bg-black/40 backdrop-blur-sm"
+        />
+      )}
+    </AnimatePresence>
+
+    <div
       onMouseLeave={() => setActiveMenu(null)}
-      initial={{ opacity: 0, y: -8 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -8 }}
-      transition={{ duration: 1 }}
-      className="absolute pb-5 left-0 right-0 z-50"
+      className="absolute left-0 right-0 z-50 pb-5"
     >
       {activeMenu}
-    </motion.div>
+    </div>
+
 
       
     </div>
