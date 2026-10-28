@@ -1,5 +1,7 @@
 "use client";
 
+import {motion} from 'motion/react'
+
 
 const Data =[
     {
@@ -22,7 +24,11 @@ const Data =[
 
 const WebSiteAd = () => {
   return (
-    <div className='flex justify-around px-15 pt-5 pb-3 bg-white'>
+    <motion.div
+    initial={{y:-50, opacity:0}}
+    animate={{y:0, opacity:1}}
+    transition={{duration:0.8}}
+    className='flex justify-around px-15 pt-5 pb-3 bg-white'>
         
         {Data.map((l)=>{
 
@@ -37,7 +43,7 @@ const WebSiteAd = () => {
                 </div>
             )
         })}
-    </div>
+    </motion.div>
   )
 }
 

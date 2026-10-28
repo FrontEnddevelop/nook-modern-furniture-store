@@ -4,42 +4,52 @@ import React from 'react';
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Search, CircleUser, ShoppingCart, ArrowRight, X, Package, ChevronDown } from "lucide-react" 
+import { Search, CircleUser, ShoppingCart, ArrowRight, X, Package } from "lucide-react" 
 import CountrySelector from '@/Data/countries'
 import SearchBar from '@/Components/Navbar/Navbarfiles/SearchBar'
-import { button } from 'motion/react-client';
+import { Menu} from 'lucide-react'
+
 
 
 const LOGO_URL = "/Nook-logo.svg";
 
 
 
-const NavbarOne = () => {
+const NavbarOne = ({showButton,onButtonClick}) => {
   const [focused, setFocused] = useState(false);
   const [sign, setSign] =useState(false);
-  const [open, setOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false); 
   const [cartCount] = useState(0);
   return (
     <>
     <div>
-        <header className="sticky top-0 z-40 bg-white">
-      <div className={`mx-auto flex h-20 max-w-[1800px] items-center justify-${open ? 'center' : 'between'} gap-6 px-6 md:px-20`}>
+        <header className="relative w-full top-0 bg-white">
+      <div className={` mx-auto flex h-20 max-w-[1900px] items-center justify-${searchOpen ? 'center' : 'between'} gap-6 px-6 md:px-20`}>
+        
         {/* Logo */}
-       {!open && <Link href="/#" className="shrink-0">
-          {LOGO_URL ? (
-            <img src={LOGO_URL} alt="Nook" className="h-9 w-auto" />
-          ) : (
-            <span className="text-4xl font-semibold tracking-tight text-neutral-700">
-              NOOK
-            </span>
-          )}
+        <div className='flex  gap-6'>
+        {showButton && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            onClick={onButtonClick}
+            className="flex items-center gap-1 text-sm font-medium"
+          >
+            <Menu size={24} />
+          </motion.button>
+        )}
+      <Link href="/#" className="shrink-0"> 
+        <img src={LOGO_URL} alt="Nook" className="h-9 w-auto" />          
         </Link>
-}
+        </div>
+        
+
 
         {/* Search bar (desktop) */}
         <motion.div
 
-        onClick={()=>setOpen(true)}
+        onClick={()=>setSearchOpen(true)}
           className="hidden w-full max-w-170 items-center gap-4 rounded-full border bg-white px-7 py-3 md:flex"
           animate={{
             borderColor: focused ? "#262626" : "#d4d4d4",
@@ -59,11 +69,11 @@ const NavbarOne = () => {
           />
           
         </motion.div>
-        {open && <button onClick={()=>setOpen(false)} className='text-3xl'>X</button>}
+        {searchOpen && <button onClick={()=>setSearchOpen(false)} className='text-3xl'>X</button>}
         
 
         {/* Right side */}
-        {!open &&
+        {!searchOpen  &&
         <div className="flex shrink-0 items-center gap-5">
           {/* Mobile search icon */}
           <button className="md:hidden" aria-label="Search">
@@ -107,8 +117,8 @@ const NavbarOne = () => {
         </div>
 }
       </div>
-    </header>
-    {open && 
+   
+    {searchOpen && 
     <div><SearchBar/></div>}
     {sign && <div className="w-full absolute top-5 right-7 z-40 max-w-95 rounded-3xl bg-white p-6 shadow-2xl">
   {/* Header */}
@@ -169,6 +179,7 @@ const NavbarOne = () => {
     </Link>
   </div>
 </div>}
+ </header>
 
     </div>
     </>

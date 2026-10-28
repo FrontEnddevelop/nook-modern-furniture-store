@@ -106,7 +106,7 @@ const NavarbarTwo = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 1 }}
-      className=" pb-5 left-0 right-0 z-50"
+      className="absolute pb-5 left-0 right-0 z-50"
     >
       {activeMenu}
     </motion.div>

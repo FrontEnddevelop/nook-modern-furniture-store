@@ -1,4 +1,6 @@
 import { ArrowRight } from "lucide-react";
+import {motion} from 'motion/react'
+
 
 const sections = [
   {
@@ -29,7 +31,11 @@ const sections = [
 
 export default function DiningRoomMenu() {
   return (
-    <div className="w-full bg-white px-16 py-8 text-[#1E1B18]">
+    <motion.div
+    initial={{y:-50, opacity:0}}
+    animate={{y:0, opacity:1}}
+    transition={{duration:0.8}}
+    className="w-full bg-white px-16 py-8 text-[#1E1B18]">
       <div className="flex gap-16">
         {/* Left: link columns */}
         <div className="grid flex-1 grid-cols-4 gap-x-10 gap-y-10">
@@ -73,6 +79,6 @@ export default function DiningRoomMenu() {
           <p className="mt-3 text-center text-lg">50% off on Dining room Furniture</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

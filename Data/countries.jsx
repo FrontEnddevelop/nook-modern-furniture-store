@@ -43,7 +43,7 @@ export default function CountrySelector() {
             animate={{  y: 0 ,x:0}}
             exit={{ opacity:0, y: -8, x:500, duration:0.15}}
             transition={{ duration: 1 }}
-            className="relative top-105 right-[-235] z-50 mt-3 max-h-lvh w-100 overflow-y-auto rounded-lg border border-neutral-200 bg-white py-2 shadow-lg"
+            className="absolute -top-10 right-[-235] z-50 mt-3 max-h-lvh w-100 overflow-y-auto rounded-lg border border-neutral-200 bg-white py-2 shadow-lg"
           >
             {list.map((c) => (
               <li
