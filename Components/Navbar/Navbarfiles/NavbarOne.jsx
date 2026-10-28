@@ -27,7 +27,7 @@ const NavbarOne = ({showButton,onButtonClick}) => {
       <div className={` mx-auto flex h-20 max-w-[1900px] items-center justify-${searchOpen ? 'center' : 'between'} gap-6 px-6 md:px-20`}>
         
         {/* Logo */}
-        <div className='flex  gap-6'>
+        {!searchOpen && <div className='flex  gap-6'>
         {showButton && (
           <motion.button
             initial={{ opacity: 0, scale: 0.8 }}
@@ -42,7 +42,8 @@ const NavbarOne = ({showButton,onButtonClick}) => {
       <Link href="/#" className="shrink-0"> 
         <img src={LOGO_URL} alt="Nook" className="h-9 w-auto" />          
         </Link>
-        </div>
+      </div>
+}
         
 
 

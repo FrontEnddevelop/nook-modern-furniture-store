@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import countriesData from "world-countries";
 import "flag-icons/css/flag-icons.min.css";
@@ -24,8 +24,25 @@ export default function CountrySelector() {
     list.find((c) => c.name === "United States") || list[0]
   );
 
+  const wrapperRef = useRef(null);
+   useEffect(() => {
+    if (!open) return;
+
+    const handleOutside = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutside);
+    return () => document.removeEventListener("mousedown", handleOutside);
+  }, [open]);
+
+
   return (
-    <div className="relative hidden sm:block p-2 ">
+    <div
+    ref={wrapperRef}
+    className="relative right-14 hidden sm:block p-2 ">
       <button
         onClick={() => setOpen((o) => !o)}
         className="flex justify-between items-center gap-3 text-sm w-auto"
