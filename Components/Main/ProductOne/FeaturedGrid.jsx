@@ -63,7 +63,12 @@ const FeaturedGrid = () => {
         <div className="grid grid-rows-2 gap-2">
           {small.map((elem, i) => (
   <motion.a
-    key={elem.idx}
+  initial={{ opacity: 0, y: 60 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.3 }}
+    transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2}}
+  
+  key={elem.idx}
     className="group relative block min-h-75 overflow-hidden"
   >
               {elem.pic && (

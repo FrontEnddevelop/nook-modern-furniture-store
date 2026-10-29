@@ -202,7 +202,7 @@ const DesignEdit = () => {
       </div>
 
       {/* Progress bar */}
-      <div className="relative mt-8 h-[3px] w-full bg-neutral-200">
+      <div className="relative mt-8 h-0.75 w-full bg-neutral-200">
         <div
           className="absolute top-0 h-full bg-neutral-700 transition-[left] duration-150"
           style={{ width: `${bar.thumb}%`, left: `${bar.left}%` }}

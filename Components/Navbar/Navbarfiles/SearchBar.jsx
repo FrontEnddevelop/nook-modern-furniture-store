@@ -25,7 +25,7 @@ export default function SearchBar() {
       initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
       className="w-full overflow-hidden bg-white text-neutral-900"
     >
       <div className="px-80 py-12 h-lvh">
@@ -36,13 +36,14 @@ export default function SearchBar() {
         <div className="flex-1">
           <h3 className="mb-3 font-sans text-[17px] ">Popular products</h3>
           <motion.div
-          initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 20, opacity: 0 }}
-            transition={{ duration: 0.7, ease: "easeInOut" }}
           className="grid grid-cols-2 w-190 gap-x-0 gap-y-7">
             {products.map((p) => (
-              <a key={p.name} href="#" className="group flex items-center gap-5">
+              <motion.a 
+              initial={{ opacity: 0 , y:20}}
+                  whileInView={{ opacity: 1, y:0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration:0.7, ease: 'easeOut', delay: 0.4}}
+              key={p.name} href="#" className="group flex items-center gap-5">
                 <div className="h-22.5 w-22.5 shrink-0 bg-neutral-100">
                   <img src={p.img} alt={p.name} className="h-full w-full object-contain" />
                 </div>
@@ -53,7 +54,7 @@ export default function SearchBar() {
                   <p className="text-base group-hover:text-blue-600">{p.name}</p>
                   <p className="text-base">{p.price}</p>
                 </div>
-              </a>
+              </motion.a>
             ))}
           </motion.div>
         </div>
@@ -68,18 +69,19 @@ export default function SearchBar() {
               className={i > 0 ? "mt-5 border-t border-neutral-200 pt-5" : " font-sans"}
             >
               <h3 className="mb-2 text-base">{s.title}</h3>
-              <motion.ul
-              initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 20, opacity: 0 }}
-            transition={{ duration: 0.7, ease: "easeInOut" }}              
+              <motion.ul            
               className="space-y-1.5">
                 {s.links.map((l) => (
-                  <li key={l}>
+                  <motion.li
+                  initial={{ opacity: 0 , y:20}}
+                  whileInView={{ opacity: 1, y:0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.7, ease: 'easeOut', delay: 0.4}}
+                  key={l}>
                     <a href="#" className="text-neutral-700 hover:underline">
                       {l}
                     </a>
-                  </li>
+                  </motion.li>
                 ))}
               </motion.ul>
             </div>
