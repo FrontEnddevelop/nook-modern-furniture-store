@@ -2,6 +2,7 @@ import React from 'react'
 import ShopByDepartment from './ProductOne/ShopByDepartment'
 import FeaturedGrid  from './ProductOne/FeaturedGrid'
 import AnimationProducer from './Design/AnimationProducer'
+import Animationsec from './Design/Animationsec'
 import DesignOne from './Design/DesignOne'
 
 const Main = () => {
@@ -10,7 +11,9 @@ const Main = () => {
          <ShopByDepartment/>
          <FeaturedGrid />
          <AnimationProducer/>
+         <Animationsec/>
          {/* <DesignOne/> */}
+        
     </div>
   )
 }

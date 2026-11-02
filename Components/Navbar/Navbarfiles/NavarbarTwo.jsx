@@ -7,21 +7,23 @@ import LivingRoom from './LivingRoom';
 import DinningRoomMenu from './DinningRoom';
 import WebSiteAd from './WebSiteAd'
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+
 
 
 
 const links = [
-  { label: "Living room", dropdown: true },
-  { label: "Dining room", dropdown: true },
-  { label: "Bedroom", dropdown: true },
-  { label: "Decor" },
-  { label: "Lightning", dropdown: true },
-  { label: "Design Service" },
-  { label: "Inspiration" },
-  { label: "Sale", sale: true },
-  { label: "Blog" },
-  { label: "Presets", dropdown: true },
-  { label: "Theme Features" },
+  { label: "Living room", dropdown: true, url:'' },
+  { label: "Dining room", dropdown: true, url:'' },
+  { label: "Bedroom", dropdown: true, url:'' },
+  { label: "Decor", url:'#' },
+  { label: "Lightning", dropdown: true, url:'' },
+  { label: "Design Service", url:'#' },
+  { label: "Inspiration", url:'#' },
+  { label: "Sale", sale: true, url:'#' },
+  { label: "Blog", url:'/blog' },
+  { label: "Presets", dropdown: true, url:'' },
+  { label: "Theme Features", url:'#' },
 ];
 
 
@@ -96,7 +98,7 @@ useEffect(() => {
               l.sale ? "text-[#8b1a1a]" : "text-[#1E1B18]"
             }`}
           >
-            {l.label}
+            <Link href ={l.url}>{l.label}</Link>
             {l.dropdown && <ChevronDown size={14} />}
           </li>
         ))}

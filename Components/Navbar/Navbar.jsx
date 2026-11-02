@@ -39,7 +39,7 @@ const Navbar = () => {
   return (
     <>
       {/* NavbarOne: always fixed */}
-      <div className="fixed left-0 top-0 z-55 h-20 w-full bg-white">
+      <div className="fixed left-0 top-0 z-55 h-20 w-full shadow-xl/3 bg-white">
         <NavbarOne
           showButton={!inView && !open}
           onButtonClick={() => setOpen(true)}
