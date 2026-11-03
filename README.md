@@ -29,8 +29,8 @@ This is a practice project: a UI clone of the [Wonder](https://wonder-theme-inte
 
 <img width="1914" height="895" alt="image" src="https://github.com/user-attachments/assets/e2403aba-28d6-48f1-91fa-a34dba7f663b" />
 
+<img width="1920" height="511" alt="image" src="https://github.com/user-attachments/assets/65b4f52e-e138-472d-958a-f79068d1de93" />
 
-![Uploading image.png…]()
 
 ## Features
 
